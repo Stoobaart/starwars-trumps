@@ -1,24 +1,23 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { setProperties } from '@ember/object';
 
 moduleForComponent('display-card', 'Integration | Component | display card', {
   integration: true
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  const card = {
+    name: 'stuballs',
+  };
+  const resource = 'people';
 
-  this.render(hbs`{{display-card}}`);
+  setProperties(this, {
+    card,
+    resource,
+  });
 
-  assert.equal(this.$().text().trim(), '');
+  this.render(hbs`{{display-card card=card resource=resource}}`);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#display-card}}
-      template block text
-    {{/display-card}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('.card-name').text().trim(), 'stuballs');
 });

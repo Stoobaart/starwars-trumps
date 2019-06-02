@@ -27,6 +27,7 @@ test('clicking deal deals cards', function(assert) {
 
   andThen(function() {
     assert.equal(currentURL(), '/play');
+    click('.catagories-button');
     click('.deal-button');
     andThen(() => {
       assert.dom('.score-container').exists();
@@ -42,6 +43,7 @@ test('playing a card displays a result', function(assert) {
 
   andThen(function() {
     assert.equal(currentURL(), '/play');
+    click('.catagories-button');
     click('.deal-button');
     andThen(() => {
       click('.battle-button');
@@ -61,6 +63,7 @@ test('on game over, displays end game page', function(assert) {
 
   andThen(function() {
     assert.equal(currentURL(), '/play');
+    click('.catagories-button');
     click('.deal-button');
     andThen(() => {
       click('.battle-button');

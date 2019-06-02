@@ -24,7 +24,8 @@ test('it renders', function(assert) {
   });
 
   this.render(hbs`{{
-    round-result roundWinner=roundWinner
+    round-result
+      roundWinner=roundWinner
       playerCard=resultingPlayerCard
       opponentCard=resultingOpponentCard
       chosenAttribute=battleAttribute
