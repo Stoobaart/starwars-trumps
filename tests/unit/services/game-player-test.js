@@ -1,11 +1,7 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('service:game-player', 'Unit | Service | game player', {
-  // Specify the other units that are required for this test.
-  // needs: ['service:foo']
-});
+moduleFor('service:game-player', 'Unit | Service | game player', {});
 
-// Replace this with your real tests.
 test('it exists', function(assert) {
   let service = this.subject();
   assert.ok(service);

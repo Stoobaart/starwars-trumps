@@ -2,6 +2,9 @@ import Route from '@ember/routing/route';
 import { set } from '@ember/object';
 import $ from 'jquery';
 import { later } from '@ember/runloop';
+import Ember from 'ember';
+
+const { testing } = Ember;
 
 export default Route.extend({
 
@@ -15,12 +18,16 @@ export default Route.extend({
 
     didTransition() {
       this._super(...arguments);
-      $("#march")[0].pause();
+      if (!testing) {
+        $("#march")[0].pause();
+      }
     },
 
     startGame() {
       set(this, 'currentModel.gameStarted', true);
-      $("#theme")[0].play();
+      if (!testing) {
+        $("#theme")[0].play();
+      }
 
       later(() => {
         $('.start-subtitle').fadeIn(2000);

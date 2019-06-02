@@ -1,11 +1,11 @@
-{{#if (not model.gameStarted)}}
-  <button class='start-button' {{action 'startGame'}}>START GAME</button>
-{{else}}
-  <div class='start-page-container'>
+<div class='start-page-container'>
+  {{#if (not model.gameStarted)}}
+    <button class='start-button' {{action 'startGame'}}>START GAME</button>
+  {{else}}
     <img class='start-image' src='/images/star-wars-logo.png'>
     <div class='start-subtitle'>TRUMPS</div>
     {{#link-to 'play'}}<h1 class='play-button'>PLAY</h1>{{/link-to}}
-  </div>
-{{/if}}
+  {{/if}}
+</div>
 
 {{outlet}}

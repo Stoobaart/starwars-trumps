@@ -1,5 +1,5 @@
 {{#if (not model.roundStarted)}}
-  <div>Choose your catagory</div>
+  <div class='catagories-header'>Choose your catagory</div>
   <section class='catagories-container'>
     <button class='catagories-button'
       {{action (queue (action (mut model.gamePlayer.resource) 'starships')
@@ -15,7 +15,11 @@
       <img class='catagories-image' src='/images/star-wars-heroes.jpg'>
     </button>
   </section>
-  <button {{action 'dealCards'}}>Deal cards</button>
+  {{#if model.gamePlayer.resource}}
+    <div class='deal-button-container'>
+      <button class='deal-button' {{action 'dealCards'}}>Deal cards</button>
+    </div>
+  {{/if}}
 {{else}}
   {{#if (eq model.gamePlayer.result null)}}
     <div class='score-container'>
@@ -26,16 +30,23 @@
     <div class='battle-cards-container'>
       <div class='player-cards'>
         {{#if model.gamePlayer.showCard}}
-          <div class='player-card'>{{model.gamePlayer.resultingPlayerCard.name}}</div>
+          {{display-card
+            card=model.gamePlayer.resultingPlayerCard
+            resource=model.gamePlayer.resource}}
         {{else}}
-          <div class='player-card player'>{{model.gamePlayer.hand1.[0].name}}</div>
+          {{display-card
+            card=model.gamePlayer.hand1.[0]
+            resource=model.gamePlayer.resource
+            playerCard=true}}
         {{/if}}
       </div>
       <div class='player-cards'>
         {{#if model.gamePlayer.showCard}}
-          <div class='player-card'>{{model.gamePlayer.resultingOpponentCard.name}}</div>
+          {{display-card
+            card=model.gamePlayer.resultingOpponentCard
+            resource=model.gamePlayer.resource}}
         {{else}}
-          <div class='player-card opponent'>OPPONENT CARD</div>
+          <div class='player-card opponent'>Opponent card</div>
         {{/if}}
       </div>
     </div>
@@ -79,11 +90,15 @@
     </div>
 
   {{else if (eq model.gamePlayer.result 'win')}}
-    <h1>YOU WIN!</h1>
-    <button class='battle-button battle-button_attack' {{action 'resetGame'}}>Play Again</button>
+    <div class='round-result-container'>
+      <h1>YOU WIN!</h1>
+      <button class='battle-button battle-button_attack' {{action 'resetGame'}}>Play Again</button>
+    </div>
   {{else}}
-    <h1>YOU LOSE!</h1>
-    <button class='battle-button battle-button_attack' {{action 'resetGame'}}>Play Again</button>
+    <div class='round-result-container'>
+      <h1>YOU LOSE!</h1>
+      <button class='battle-button battle-button_attack' {{action 'resetGame'}}>Play Again</button>
+    </div>
   {{/if}}
 {{/if}}
 {{outlet}}

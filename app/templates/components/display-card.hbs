@@ -1,0 +1,14 @@
+<div class='player-card {{if playerCard 'player'}}'>
+  <div class='card-name'>{{card.name}}</div>
+  {{#if (eq resource 'people')}}
+    <div>Height: {{card.height}}</div>
+    <div>Mass: {{card.mass}}</div>
+  {{else}}
+    <div>Relative speed: {{card.MGLT}}</div>
+    <div>Cargo capacity: {{card.cargo_capacity}}</div>
+    <div>Cost: {{card.cost_in_credits}}</div>
+    <div>Crew: {{card.crew}}</div>
+    <div>Length: {{card.length}}</div>
+  {{/if}}
+</div>
+{{yield}}

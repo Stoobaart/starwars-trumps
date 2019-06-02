@@ -1,5 +1,5 @@
 <div class='round-result-container'>
   <div class='round-result'>You've {{if (eq roundWinner 'player') 'won' 'lost'}} with {{playerCard.name}} versus your opponent's {{opponentCard.name}}</div>
-  <button class='next-round-button' {{action 'endRound'}}>Next Round</button>
+  <button class='next-round-button battle-button_attack' {{action 'endRound'}}>Next Round</button>
 </div>
 {{yield}}
