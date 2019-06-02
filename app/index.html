@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {{content-for "head"}}
-
+    <link href="https://fonts.googleapis.com/css?family=Poller+One&display=swap" rel="stylesheet">
     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/star-wars-trumps.css">
 
@@ -16,7 +16,11 @@
   </head>
   <body>
     {{content-for "body"}}
-
+    <audio id="theme" src="music/theme.mp3"></audio>
+    <audio loop id="battle" src="music/battle.mp3"></audio>
+    <audio loop id="march" src="music/march.mp3"></audio>
+    <audio id="fire" src="music/fire.mp3"></audio>
+    <audio id="flyby" src="music/flyby.mp3"></audio>
     <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="{{rootURL}}assets/star-wars-trumps.js"></script>
 

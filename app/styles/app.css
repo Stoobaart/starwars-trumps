@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
+  font-family: 'Poller One', cursive;
+}
+
+.start-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.start-image {
+  width: 80%;
+  height: 60vh;
+  margin: auto;
+  display: flex;
+}
+
+.start-subtitle {
+  display: none;
+  font-size: 4rem;
+  color: gold;
+}
+
+.play-button {
+  display: none;
+}
+
+.score-container {
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.catagories-container {
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.catagories-button {
+  border: none;
+  width: 48%;
+  height: 30rem;
+  overflow: hidden;
+}
+
+.catagories-button:focus {
+  border: none;
+}
+
+/*.catagories-image {
+  position: relative;
+  left: -8rem;
+}*/
+
+.catagories-title {
+  position: absolute;
+}
+
+.battle-instruction {
+  text-align: center;
+}
+
+.battle-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.battle-button {
+  width: 8rem;
+  height: 3rem;
+  border-radius: 3px;
+  margin: 0 .5rem;
+}
+
+.battle-button_attack-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.battle-button_attack {
+  animation: glowing 1500ms infinite;
+}
+
+@keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+
+.battle-cards-container {
+  width: 100%;
+  display: flex;
+}
+
+.player-cards-container {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 1rem;
+}
+
+.player-cards {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-card {
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 15rem;
+  height: 19rem;
+  background-color: white;
+  color: grey;
+}
+
+.player {
+  animation: slide-in .2s linear;
+}
+
+.player-deck {
+  animation: slide-in .3s linear;
+}
+
+.opponent {
+  animation: slide-in .5s linear;
+}
+
+.opponent-deck {
+  animation: slide-in .6s linear;
+}
+
+@keyframes slide-in {
+  0% {
+    -webkit-transform: translateX(100%);
+  }
+  100% {
+    -webkit-transform: translateX(0%);
+  }
+}
+
+.round-result-container {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.round-result {
+  text-align: center;
+  color: gold;
+  font-size: 3rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-top: 18rem;
+}

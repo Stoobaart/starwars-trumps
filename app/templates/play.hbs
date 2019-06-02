@@ -1,0 +1,89 @@
+{{#if (not model.roundStarted)}}
+  <div>Choose your catagory</div>
+  <section class='catagories-container'>
+    <button class='catagories-button'
+      {{action (queue (action (mut model.gamePlayer.resource) 'starships')
+       (action (mut model.gamePlayer.cards) model.starships))}}>
+      <div class='catagories-title'>Starships</div>
+      <img class='catagories-image' src='/images/star-wars-ships.jpg'>
+    </button>
+
+    <button class='catagories-button'
+      {{action (queue (action (mut model.gamePlayer.resource) 'people')
+       (action (mut model.gamePlayer.cards) model.people))}}>
+      <div class='catagories-title'>People</div>
+      <img class='catagories-image' src='/images/star-wars-heroes.jpg'>
+    </button>
+  </section>
+  <button {{action 'dealCards'}}>Deal cards</button>
+{{else}}
+  {{#if (eq model.gamePlayer.result null)}}
+    <div class='score-container'>
+      <div class='player-score'>Player score: {{model.gamePlayer.score1}}</div>
+      <div class='opponent-score'>Opponent score: {{model.gamePlayer.score2}}</div>
+    </div>
+
+    <div class='battle-cards-container'>
+      <div class='player-cards'>
+        {{#if model.gamePlayer.showCard}}
+          <div class='player-card'>{{model.gamePlayer.resultingPlayerCard.name}}</div>
+        {{else}}
+          <div class='player-card player'>{{model.gamePlayer.hand1.[0].name}}</div>
+        {{/if}}
+      </div>
+      <div class='player-cards'>
+        {{#if model.gamePlayer.showCard}}
+          <div class='player-card'>{{model.gamePlayer.resultingOpponentCard.name}}</div>
+        {{else}}
+          <div class='player-card opponent'>OPPONENT CARD</div>
+        {{/if}}
+      </div>
+    </div>
+    {{#if model.gamePlayer.roundEnd}}
+      {{round-result
+        roundWinner=model.gamePlayer.roundWinner
+        playerCard=model.gamePlayer.resultingPlayerCard
+        opponentCard=model.gamePlayer.resultingOpponentCard
+        chosenAttribute=model.gamePlayer.battleAttribute
+      }}
+    {{/if}}
+
+    <div class='battle-instruction'>Choose Attribute For Battle</div>
+
+    <div class='battle-buttons'>
+      {{#if (eq model.gamePlayer.resource 'starships')}}
+        <button class='battle-button' {{action (mut model.gamePlayer.battleAttribute) 'MGLT'}}>Relative Speed</button>
+        <button class='battle-button' {{action (mut model.gamePlayer.battleAttribute) 'cargo_capacity'}}>Cargo Capacity</button>
+        <button class='battle-button' {{action (mut model.gamePlayer.battleAttribute) 'cost_in_credits'}}>Cost in Credits</button>
+        <button class='battle-button' {{action (mut model.gamePlayer.battleAttribute) 'crew'}}>Number of Crew</button>
+        <button class='battle-button' {{action (mut model.gamePlayer.battleAttribute) 'length'}}>Length</button>
+      {{else}}
+        <button class='battle-button' {{action (mut model.gamePlayer.battleAttribute) 'height'}}>Height</button>
+        <button class='battle-button' {{action (mut model.gamePlayer.battleAttribute) 'mass'}}>Mass</button>
+      {{/if}}
+    </div>
+
+    {{#if (and model.gamePlayer.battleAttribute (not model.gamePlayer.roundEnd))}}
+      <div class='battle-button_attack-container'>
+        <button class='battle-button battle-button_attack' {{action 'playHand'}}>Attack!</button>
+      </div>
+    {{/if}}
+
+    <div class='player-cards-container'>
+      <div class='player-cards'>
+        <div class='player-card player-deck'>PLAYER CARDS REMAINING X{{model.gamePlayer.hand1.length}}</div>
+      </div>
+      <div class='player-cards'>
+        <div class='player-card opponent-deck'>OPPONENT CARDS REMAINING X{{model.gamePlayer.hand2.length}}</div>
+      </div>
+    </div>
+
+  {{else if (eq model.gamePlayer.result 'win')}}
+    <h1>YOU WIN!</h1>
+    <button class='battle-button battle-button_attack' {{action 'resetGame'}}>Play Again</button>
+  {{else}}
+    <h1>YOU LOSE!</h1>
+    <button class='battle-button battle-button_attack' {{action 'resetGame'}}>Play Again</button>
+  {{/if}}
+{{/if}}
+{{outlet}}
